@@ -12,7 +12,14 @@
     "importHelpers": true,
     "target": "ES2022",
     "module": "preserve",
-    "paths": {},
+    "paths": {
+      "@tt/layout": ["libs/layout/src/index.ts"],
+      "@tt/common-ui": ["libs/common-ui/src/index.ts"],
+      "@tt/profile": ["libs/profile/src/index.ts"],
+      "@tt/chat": ["libs/chat/src/index.ts"],
+      "@tt/community": ["libs/community/src/index.ts"],
+      "@tt/auth": ["libs/auth/src/index.ts"]
+    },
     "baseUrl": ".",
     "rootDir": "."
   },

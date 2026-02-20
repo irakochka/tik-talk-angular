@@ -1,0 +1,31 @@
+<aside class="sidebar">
+  <a routerLink="profile/me" class="sidebar__brand mb20">
+    <img class="sidebar__brand-logo" src="/assets/svg/logo-small.svg" alt="Logo">
+  </a>
+
+  <nav class="sidebar__nav">
+    <ul class="sidebar__nav-list">
+      @for (menuItem of menuItems; track menuItem.label) {
+        <li class="sidebar__nav-item">
+        <a class="sidebar__nav-link" [routerLink]="menuItem.link" routerLinkActive="is-active">
+            <span class="sidebar__nav-icon">
+              <svg class="icon16" [icon]="menuItem.icon"></svg>
+            </span>
+          <span class="sidebar__nav-label">{{ menuItem.label }}</span>
+        </a>
+        </li>
+      }
+    </ul>
+  </nav>
+
+  <a class="sidebar__footer" routerLink="settings" routerLinkActive="is-active">
+    <div class="sidebar__user">
+      <img class="size32" src="/assets/images/avatar-placeholder.png" alt="">
+      <div class="sidebar__user-name">bella-goth</div>
+    </div>
+
+    <span class="sidebar__footer-icon">
+      <svg class="icon16" icon="settings"></svg>
+    </span>
+  </a>
+</aside>
