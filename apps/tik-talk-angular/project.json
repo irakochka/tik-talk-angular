@@ -1,0 +1,88 @@
+{
+  "name": "tik-talk-angular",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "generators": {
+    "@schematics/angular:component": {
+      "style": "scss"
+    }
+  },
+  "sourceRoot": "apps/tik-talk-angular/src",
+  "prefix": "app",
+  "targets": {
+    "build": {
+      "executor": "@angular/build:application",
+      "options": {
+        "browser": "apps/tik-talk-angular/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "apps/tik-talk-angular/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "public"
+          }
+        ],
+        "styles": ["apps/tik-talk-angular/src/styles.scss"],
+        "outputPath": "dist/tik-talk-angular"
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kB",
+              "maximumError": "1MB"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "4kB",
+              "maximumError": "8kB"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true
+        }
+      },
+      "defaultConfiguration": "production",
+      "outputs": ["{options.outputPath}"]
+    },
+    "serve": {
+      "executor": "@angular/build:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "tik-talk-angular:build:production"
+        },
+        "development": {
+          "buildTarget": "tik-talk-angular:build:development"
+        }
+      },
+      "defaultConfiguration": "development",
+      "options": {
+        "proxyConfig": "proxy-conf.json"
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular/build:extract-i18n"
+    },
+    "test": {
+      "executor": "@angular/build:karma",
+      "options": {
+        "polyfills": ["zone.js", "zone.js/testing"],
+        "tsConfig": "apps/tik-talk-angular/tsconfig.spec.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "apps/tik-talk-angular/public"
+          }
+        ],
+        "styles": ["apps/tik-talk-angular/src/styles.scss"]
+      }
+    }
+  }
+}
