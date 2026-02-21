@@ -1,0 +1,107 @@
+/* ===== Login layout ===== */
+.login {
+  max-width: 1112px;
+  height: 100vh;
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.login__form {
+  width: 440px;
+}
+
+.login__illustration {
+  display: block;
+}
+
+.login__submit {
+  width: 100%;
+}
+
+/* ===== Login control (fields) ===== */
+.login-control {
+  display: grid;
+  gap: 8px;
+}
+
+.login-control__label {
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--light-color);
+}
+
+.login-control__field {
+  position: relative;
+  display: block;
+}
+
+.login-control__input {
+  width: 100%;
+  padding: 12px 14px;
+
+  border-radius: 6px;
+  border: 1px solid var(--light-color);
+
+  background-color: var(--dark-color);
+  color: var(--light-color);
+  outline: none;
+}
+
+.login-control__input::placeholder {
+  color: var(--light-color-transparrent);
+}
+
+.login-control__input:focus-visible {
+  border-color: var(--primary-color);
+}
+
+.login-control__icon {
+  position: absolute;
+  top: 50%;
+  right: 14px;
+  transform: translateY(-50%);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  pointer-events: none;
+}
+
+/* action button (eye) */
+.login-control__action {
+  position: absolute;
+  top: 50%;
+  right: 14px;
+  transform: translateY(-50%);
+
+  width: 20px;
+  height: 20px;
+  padding: 0;
+
+  border: none;
+  background: transparent;
+
+  color: rgba(255, 255, 255, 0.75);
+  cursor: pointer;
+}
+
+.login-control__action:focus-visible {
+  color: var(--light-color);
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+.login-control__action--active {
+  color: var(--primary-color);
+}
+
+/* ===== Modifiers ===== */
+.login-control--with-icon .login-control__input,
+.login-control--with-action .login-control__input {
+  padding-right: 44px;
+}

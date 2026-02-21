@@ -1,0 +1,22 @@
+<label class="input-control" [class.input-control--with-icon]="!!icon()">
+  <span class="input-control__label">{{ labelText() }}</span>
+
+  <span class="input-control__field">
+    <input
+      class="input-control__input"
+      [type]="type()"
+      [placeholder]="placeholder()"
+      [ngModel]="value"
+      (ngModelChange)="onInput($event)"
+      (blur)="onTouched()"
+    />
+
+    <span class="input-control__icon">
+      <ng-content select="[icon]" />
+    </span>
+  </span>
+</label>
+
+@if (ngControl?.invalid && (ngControl?.touched || ngControl?.dirty)) {
+  <p class="input-control__error">Поле обязательно к заполнению!</p>
+}

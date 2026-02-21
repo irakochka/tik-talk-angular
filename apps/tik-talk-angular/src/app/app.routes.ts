@@ -3,7 +3,7 @@ import {Layout} from '@tt/layout';
 import {ProfilePage, ProfileSearchPage, SettingsPage} from '@tt/profile';
 import {ChatPage} from '@tt/chat';
 import {CommunitySearchPage} from '@tt/community';
-import {LoginPage} from '../../../../libs/auth/src/lib/feature-login-page';
+import {canActivateAuth, canActivateGuest, LoginPage} from '@tt/auth';
 
 export const routes: Routes = [
   {
@@ -31,10 +31,12 @@ export const routes: Routes = [
         path: 'settings',
         component: SettingsPage,
       },
-    ]
+    ],
+    canActivate: [canActivateAuth],
   },
   {
     path: 'login',
-    component: LoginPage
+    component: LoginPage,
+    canActivate: [canActivateGuest],
   }
 ];

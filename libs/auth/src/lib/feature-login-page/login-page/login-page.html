@@ -1,1 +1,44 @@
-<p>login-page works!</p>
+<div class="login">
+  <form class="login__form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <h1 class="h1 mb60">Вход</h1>
+
+    <div class="login-control login-control--with-icon mb20">
+      <span class="login-control__label">Telegram username</span>
+      <span class="login-control__field">
+        <input
+          class="login-control__input"
+          type="text"
+          placeholder="Введите username"
+          formControlName="username"
+        />
+        <svg icon="telegram" class="login-control__icon icon20"></svg>
+      </span>
+    </div>
+
+    <div class="login-control login-control--with-action mb20">
+      <span class="login-control__label">Пароль</span>
+      <span class="login-control__field">
+        <input
+          class="login-control__input"
+          [type]="isPasswordVisible() ? 'text' : 'password'"
+          placeholder="Введите пароль"
+          formControlName="password"
+        />
+
+        <button
+          class="login-control__action"
+          type="button"
+          [class.login-control__action--active]="isPasswordVisible()"
+          (click)="isPasswordVisible.set(!isPasswordVisible())"
+          aria-label="Показать или скрыть пароль"
+        >
+          <svg icon="eye" class="icon20"></svg>
+        </button>
+      </span>
+    </div>
+
+    <button class="btn btn--primary login__submit" type="submit">Войти</button>
+  </form>
+
+  <img class="login__illustration" src="/assets/svg/logo-big.svg" alt="" />
+</div>

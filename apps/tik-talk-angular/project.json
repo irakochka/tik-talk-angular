@@ -23,7 +23,10 @@
             "input": "public"
           }
         ],
-        "styles": ["apps/tik-talk-angular/src/styles.scss"],
+        "styles": [
+          "apps/tik-talk-angular/src/styles.scss",
+          "node_modules/ngx-toastr/toastr.css"
+        ],
         "outputPath": "dist/tik-talk-angular"
       },
       "configurations": {
@@ -81,7 +84,10 @@
             "input": "apps/tik-talk-angular/public"
           }
         ],
-        "styles": ["apps/tik-talk-angular/src/styles.scss"]
+        "styles": [
+          "apps/tik-talk-angular/src/styles.scss",
+          "node_modules/ngx-toastr/toastr.css"
+        ]
       }
     }
   }

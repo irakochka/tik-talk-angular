@@ -182,7 +182,7 @@ h5 {
   justify-content: center;
 }
 
-.field-icon {
+.input-icon {
   position: absolute;
   top: 50%;
   right: 12px;
@@ -227,10 +227,31 @@ h5 {
   color: var(--light-success-color);
 }
 
-/* TODO пофиксить */
-.login-form__label .field__label {
-  font-weight: 700!important;
-  font-size: 14px!important;
-  line-height: 20px!important;
-  color: var(--light-color)!important;
+// toast styles
+.toast-container .ngx-toastr {
+  border-radius: 2px 2px 2px 2px!important;
+  box-shadow: none!important;
+  color: var(--light-color-transparrent) !important
+}
+
+.toast-success {
+  background-color: var(--dark-color) !important;
+}
+
+.toast-error {
+  background-color: var(--dark-color) !important;
+}
+
+.toast-container .ngx-toastr {
+  margin: 0 0 40px;
+}
+
+.toast-title {
+  font-size: 14px;
+  color: var(--light-color-transparrent);
+}
+
+.toast-message {
+  font-size: 12px;
+  color: var(--light-color-transparrent);
 }

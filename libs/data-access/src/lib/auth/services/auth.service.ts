@@ -1,0 +1,68 @@
+import {inject, Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Router} from '@angular/router';
+import {Login, TokenResponse} from '../interfaces/auth.interface';
+import {catchError, Observable, tap, throwError} from 'rxjs';
+import {CookieService} from 'ngx-cookie-service';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthService {
+  http: HttpClient = inject(HttpClient);
+  router: Router = inject(Router);
+  cookieService: CookieService = inject(CookieService);
+  baseApiUrl: string = '/yt-course';
+
+  token: string | null = null;
+  refreshToken: string | null = null;
+
+  get isAuth(): boolean {
+    if (!this.token) {
+      this.token = this.cookieService.get('token');
+      this.refreshToken = this.cookieService.get('refreshToken');
+    }
+    return !!this.token;
+  }
+
+  login(payload: Login): Observable<TokenResponse> {
+    const fd = new FormData();
+    fd.append('username', payload.username);
+    fd.append('password', payload.password);
+
+    return this.http
+      .post<TokenResponse>(`${this.baseApiUrl}/auth/token`, fd)
+      .pipe(tap((val: TokenResponse): void => this.saveTokens(val)));
+  }
+
+  saveTokens(res: TokenResponse): void {
+    this.token = res.access_token;
+    this.refreshToken = res.refresh_token;
+
+    this.cookieService.set('token', this.token);
+    this.cookieService.set('refreshToken', this.refreshToken);
+  }
+
+  refreshAuthToken() {
+    return this.http
+      .post<TokenResponse>(`${this.baseApiUrl}/auth/refresh`, {
+        refresh_token: this.refreshToken,
+      })
+      .pipe(
+        tap((val: TokenResponse): void => this.saveTokens(val)),
+        catchError((err) => {
+          this.logout();
+          return throwError(err);
+        })
+      );
+  }
+
+  logout() {
+    this.http.post(`${this.baseApiUrl}/auth/logout`, {});
+
+    this.cookieService.deleteAll();
+    this.token = null;
+    this.refreshToken = null;
+    return this.router.navigate(['/login']);
+  }
+}
