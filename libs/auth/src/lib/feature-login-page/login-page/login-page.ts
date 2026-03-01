@@ -1,9 +1,10 @@
-import {ChangeDetectionStrategy, Component, inject, signal, WritableSignal} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject, signal} from '@angular/core';
 import {SvgIcon} from '@tt/common-ui';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AuthService} from '@tt/data-access';
 import {ToastrService} from 'ngx-toastr';
+import {catchError, EMPTY, from, switchMap, tap} from 'rxjs';
 
 @Component({
   selector: 'lib-login-page',
@@ -30,19 +31,18 @@ export class LoginPage {
 
   onSubmit(): void {
     if (this.form.valid) {
-      this.authService.login(this.form.getRawValue()).subscribe({
-        next: () => {
-          this.toastr.error('Вы успешно авторизовались в системе!');
-          this.router.navigate(['/']);
-        },
-        error: (err) => {
+      this.authService.login(this.form.getRawValue()).pipe(
+        tap(() => this.toastr.success('Вы успешно авторизовались в системе!')),
+        switchMap(() => from(this.router.navigate(['/']))),
+        catchError((err) => {
           if (err?.status === 401 || err?.status === 403) {
             this.toastr.error('Неверный логин или пароль.');
           } else {
             this.toastr.error('Ошибка сервера. Попробуйте позже.');
           }
-        },
-      });
+          return EMPTY;
+        })
+      ).subscribe();
     }
   }
 }
