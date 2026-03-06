@@ -1,19 +1,24 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject, OnInit} from '@angular/core';
 import {RouterLink, RouterLinkActive} from '@angular/router';
-import {SvgIcon} from '@tt/common-ui';
+import {AvatarCircle, SvgIcon} from '@tt/common-ui';
+import {ProfileService} from '@tt/data-access';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'lib-sidebar',
   imports: [
     RouterLink,
     RouterLinkActive,
-    SvgIcon
+    SvgIcon,
+    AvatarCircle
   ],
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Sidebar {
+export class Sidebar implements OnInit {
+  profileService: ProfileService = inject(ProfileService);
+
   menuItems = [
     {
       label: 'Моя страница',
@@ -36,4 +41,10 @@ export class Sidebar {
       link: '/community',
     },
   ];
+
+  me = this.profileService.me;
+
+  ngOnInit() {
+    firstValueFrom(this.profileService.getMe());
+  }
 }

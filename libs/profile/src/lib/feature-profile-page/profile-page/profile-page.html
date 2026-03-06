@@ -1,1 +1,55 @@
-<p>profile-page works!</p>
+@if (profile(); as profile) {
+  <div class="profile-page">
+    <div class="profile-page__header">
+      <lib-profile-header [profile]="profile"/>
+
+      <div class="profile-page__actions">
+        <a routerLink="/settings" class="btn btn--primary">
+          <span>Редактировать</span>
+          <svg icon="settings" class="icon16"/>
+        </a>
+      </div>
+    </div>
+    <div class="profile-page__body">
+      <div>posts will be here very soon :)</div>
+      <div class="sidebar profile-page__sidebar">
+        <div class="subscribers sidebar__subscribers mb32">
+          <div class="subscribers__title mb16">
+            <h5 class="h5">Подписчики</h5>
+            <span class="subscribers__amount">{{ profile.subscribersAmount }}</span>
+          </div>
+          @if (subscribers(); as subscribers) {
+            <ul class="subscribers__list">
+              @for (subscriber of subscribers; track subscriber.id) {
+                <li class="size36">
+                  <a [routerLink]="'/profile/' + subscriber.id">
+                    <lib-avatar-circle
+                      [avatarUrl]="subscriber.avatarUrl"
+                    />
+                  </a>
+                </li>
+              }
+              <li>
+                <a routerLink="/search" class="subscribers__btn">
+                  <svg icon="plus" class="icon16"/>
+                </a>
+              </li>
+            </ul>
+          }
+        </div>
+        <div class="skills sidebar__skills mb32">
+          <h5 class="h5 mb16">Навыки</h5>
+          <ul class="skills__list">
+            @for(stack of profile.stack; track stack) {
+              <li class="stack-item">{{ stack }}</li>
+            }
+          </ul>
+        </div>
+        <div class="sidebar__description mb32">
+          <h5 class="h5 mb16">О себе</h5>
+          <p class="medium-text">{{ profile.description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+}

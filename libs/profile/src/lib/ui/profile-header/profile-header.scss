@@ -1,0 +1,12 @@
+.profile-header {
+  display: grid;
+  grid-template-columns: 112px 1fr;
+  grid-gap: 24px;
+  align-items: center;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}

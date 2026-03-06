@@ -1,0 +1,16 @@
+@if (profile(); as profile) {
+  <div class="profile-header">
+    <lib-avatar-circle
+      class="profile-header__avatar mb4 size112"
+      [avatarUrl]="profile.avatarUrl"
+    />
+    <div class="user-info profile-header__user-info">
+      <h4 class="user-info__full-name h4">
+        {{ profile.firstName }} {{ profile.lastName }}
+      </h4>
+      <span class="user-info__username regular">
+        {{ profile.username }}
+      </span>
+    </div>
+  </div>
+}
