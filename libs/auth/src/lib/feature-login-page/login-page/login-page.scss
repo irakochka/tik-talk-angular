@@ -21,6 +21,19 @@
   width: 100%;
 }
 
+.credential {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 4px;
+
+  &__label {
+    font-size: 12px;
+    color: var(--light-color-transparrent);
+  }
+}
+
 /* ===== Login control (fields) ===== */
 .login-control {
   display: grid;

@@ -23,7 +23,7 @@ export const appConfig: ApplicationConfig = {
     provideEffects(),
     provideAnimations(),
     provideToastr({
-      positionClass: 'toast-bottom-center',
+      positionClass: 'toast-top-right',
       timeOut: 3000,
       preventDuplicates: true
     }),
