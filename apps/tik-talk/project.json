@@ -1,5 +1,5 @@
 {
-  "name": "tik-talk-angular",
+  "name": "tik-talk",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "generators": {
@@ -7,15 +7,15 @@
       "style": "scss"
     }
   },
-  "sourceRoot": "apps/tik-talk-angular/src",
+  "sourceRoot": "apps/tik-talk/src",
   "prefix": "app",
   "targets": {
     "build": {
       "executor": "@angular/build:application",
       "options": {
-        "browser": "apps/tik-talk-angular/src/main.ts",
+        "browser": "apps/tik-talk/src/main.ts",
         "polyfills": ["zone.js"],
-        "tsConfig": "apps/tik-talk-angular/tsconfig.app.json",
+        "tsConfig": "apps/tik-talk/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
           {
@@ -24,10 +24,10 @@
           }
         ],
         "styles": [
-          "apps/tik-talk-angular/src/styles.scss",
+          "apps/tik-talk/src/styles.scss",
           "node_modules/ngx-toastr/toastr.css"
         ],
-        "outputPath": "dist/tik-talk-angular"
+        "outputPath": "dist/tik-talk"
       },
       "configurations": {
         "production": {
@@ -58,10 +58,10 @@
       "executor": "@angular/build:dev-server",
       "configurations": {
         "production": {
-          "buildTarget": "tik-talk-angular:build:production"
+          "buildTarget": "tik-talk:build:production"
         },
         "development": {
-          "buildTarget": "tik-talk-angular:build:development"
+          "buildTarget": "tik-talk:build:development"
         }
       },
       "defaultConfiguration": "development",
@@ -76,16 +76,16 @@
       "executor": "@angular/build:karma",
       "options": {
         "polyfills": ["zone.js", "zone.js/testing"],
-        "tsConfig": "apps/tik-talk-angular/tsconfig.spec.json",
+        "tsConfig": "apps/tik-talk/tsconfig.spec.json",
         "inlineStyleLanguage": "scss",
         "assets": [
           {
             "glob": "**/*",
-            "input": "apps/tik-talk-angular/public"
+            "input": "apps/tik-talk/public"
           }
         ],
         "styles": [
-          "apps/tik-talk-angular/src/styles.scss",
+          "apps/tik-talk/src/styles.scss",
           "node_modules/ngx-toastr/toastr.css"
         ]
       }
