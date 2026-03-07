@@ -12,7 +12,7 @@ export const routes: Routes = [
     children: [
       { path: '', redirectTo: 'profile/me', pathMatch: 'full' },
       {
-        path: 'profile/me',
+        path: 'profile/:id',
         component: ProfilePage,
       },
       {
