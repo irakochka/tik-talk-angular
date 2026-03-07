@@ -228,6 +228,18 @@ h5 {
   color: var(--light-success-color);
 }
 
+// common label with text
+.tt-form-label {
+  display: grid;
+  gap: 8px;
+
+  &__text {
+    font-size: 12px;
+    line-height: 16px;
+    color: var(--light-color-transparrent);
+  }
+}
+
 // toast styles
 .toast-container .ngx-toastr {
   border-radius: 2px 2px 2px 2px!important;

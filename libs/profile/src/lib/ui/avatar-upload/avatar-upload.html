@@ -1,0 +1,33 @@
+<label class="tt-form-label">
+  <span class="tt-form-label__text">Аватар</span>
+
+  <div class="avatar-upload">
+    <lib-avatar-circle [avatarUrl]="previewUrl()" class="size140"/>
+
+    <div
+      class="dropzone"
+      dnd
+      (keyup.enter)="fileDrop.click()"
+      (fileDropped)="onFileDropped($event)"
+      tabindex="0"
+    >
+      <div class="dropzone-content">
+        <svg icon="upload" class="icon20"/>
+        <span class="medium-text">
+          Перетащите изображение или Загрузите <br>
+          (разрешение до 5,000 x 5,000 px)
+      </span>
+      </div>
+
+      <input
+        type="file"
+        class="avatar-input"
+        tabindex="-1"
+        accept="image/*"
+        #fileDrop
+        (change)="fileBrowserHandler($event)"
+        [(ngModel)]="avatar"
+      />
+    </div>
+  </div>
+</label>

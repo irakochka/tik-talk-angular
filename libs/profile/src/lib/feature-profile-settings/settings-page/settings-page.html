@@ -1,1 +1,88 @@
-<p>settings-page works!</p>
+@if (profile(); as profile) {
+  <div class="settings">
+    <div class="user-info settings__user-info">
+      <lib-profile-header [profile]="profile"/>
+
+      <div class="user-info__details">
+        @if (profile.stack.length > 0) {
+          <div class="skills settings__skills mb32">
+            <h5 class="h5 mb16">Навыки</h5>
+            <ul class="skills__list">
+              @for (stack of profile.stack; track stack) {
+                <li class="stack-item">{{ stack }}</li>
+              }
+            </ul>
+          </div>
+        }
+        @if (profile.description) {
+          <div class="settings__description mb32">
+            <h5 class="h5 mb16">О себе</h5>
+            <p class="medium-text">{{ profile.description }}</p>
+          </div>
+        }
+      </div>
+    </div>
+    <form class="profile-form settings__profile-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="profile-form__controls">
+        <div class="profile-form__two-columns">
+          <lib-input-control
+            type="text"
+            labelText="Имя"
+            placeholder="Укажите имя"
+            formControlName="firstName"
+          />
+
+          <lib-input-control
+            type="text"
+            labelText="Фамилия"
+            placeholder="Укажите фамилию"
+            formControlName="lastName"
+          />
+        </div>
+
+        <lib-input-control
+          type="text"
+          labelText="Telegram username"
+          placeholder="Укажите username"
+          formControlName="username"
+        />
+
+        <lib-auto-textarea
+          labelText="О себе"
+          placeholder="Напишите что-нибудь о себе"
+          formControlName="description"
+        />
+
+        <lib-avatar-upload
+          [previewUrl]="profile.avatarUrl"
+        />
+
+        <lib-tag-input
+          type="text"
+          labelText="Навыки"
+          placeholder="Укажите навыки"
+          formControlName="stack"
+        />
+      </div>
+
+      <div class="profile-form__actions">
+        <div class="profile-form__actions-left">
+          <button type="button" class="btn btn--secondary btn--icon negative-color">
+            <svg icon="delete" class="icon16"/>
+          </button>
+          <button type="button" class="btn btn--secondary btn--icon">
+            <svg icon="logout" class="icon16"/>
+          </button>
+        </div>
+        <div class="profile-form__actions-right">
+          <a routerLink="/profile/me" class="btn btn--secondary">
+            Отмена
+          </a>
+          <button type="submit" class="btn btn--primary">
+            Сохранить
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+}

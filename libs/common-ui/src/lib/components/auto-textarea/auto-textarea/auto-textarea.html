@@ -1,0 +1,10 @@
+<label class="tt-form-label auto-textarea textarea-control">
+  <span class="tt-form-label__text textarea-control__label">{{ labelText() }}</span>
+  <textarea
+    class="textarea-control__textarea"
+    (input)="onTextAreaInput($event)"
+    [placeholder]="placeholder()"
+    [ngModel]="value"
+    (ngModelChange)="onInput($event)"
+  ></textarea>
+</label>

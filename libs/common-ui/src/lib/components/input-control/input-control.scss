@@ -3,15 +3,6 @@
 }
 
 .input-control {
-  display: grid;
-  gap: 8px;
-
-  &__label {
-    font-size: 12px;
-    line-height: 16px;
-    color: var(--light-color-transparrent);
-  }
-
   &__field {
     position: relative;
     display: block;
@@ -19,12 +10,17 @@
 
   &__input {
     width: 100%;
-    padding: 12px 14px;
-    border-radius: 6px;
-    border: 1px solid transparent;
+    padding: 12px 0;
+    border: none;
+    border-bottom: 1px solid var(--light-color);
     background-color: var(--dark-color);
     color: var(--light-color);
     outline: none;
+
+    &:disabled {
+      opacity: .75;
+      cursor: not-allowed;
+    }
 
     &::placeholder {
       color: var(--light-color-transparrent)

@@ -33,6 +33,7 @@ export class InputControl implements ControlValueAccessor {
   icon = contentChild('[icon]', { read: ElementRef });
 
   value = '';
+  isDisabled = false;
 
   constructor(
     @Optional() @Self() public ngControl: NgControl | null,
@@ -66,5 +67,9 @@ export class InputControl implements ControlValueAccessor {
   onInput(value: string) {
     this.value = value;
     this.onChange(value);
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    this.isDisabled = isDisabled;
   }
 }

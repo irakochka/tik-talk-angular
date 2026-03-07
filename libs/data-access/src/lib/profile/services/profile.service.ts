@@ -29,4 +29,22 @@ export class ProfileService {
       .get<Pageable<Profile>>(`${this.baseApiUrl}/account/subscribers/`)
       .pipe(map((res) => res.items.slice(0, subsAmount)));
   }
+
+  updateProfile(profile: Partial<Profile>): Observable<Profile> {
+    return this.http.patch<Profile>(`${this.baseApiUrl}/account/me`, profile)
+      .pipe(
+        tap((res) => {
+          console.log(res);
+          this.me.set(res);
+          this.#globalStoreService.me.set(res);
+        })
+      );
+  }
+
+  uploadAvatar(file: File) {
+    const fd = new FormData();
+    fd.append('image', file);
+
+    return this.http.post<Profile>(`${this.baseApiUrl}/account/upload_image`, fd);
+  }
 }

@@ -1,0 +1,33 @@
+.textarea-control {
+  &__textarea {
+    padding: 8px 0;
+    height: 44px;
+    color: var(--light-color);
+    background-color: transparent;
+    resize: none;
+    border: none;
+    border-bottom: 1px solid var(--light-color-transparrent);
+
+    &:disabled {
+      opacity: .75;
+      cursor: not-allowed;
+    }
+
+    &::placeholder {
+      color: var(--light-color-transparrent)
+    }
+
+    &:focus,
+    &:focus-visible {
+      border-bottom: 1px solid var(--primary-color);
+      outline: none;
+    }
+  }
+
+  &__error {
+    margin-top: 6px;
+    font-size: 12px;
+    line-height: 16px;
+    color: var(--light-negative-color, #ff5a5a);
+  }
+}

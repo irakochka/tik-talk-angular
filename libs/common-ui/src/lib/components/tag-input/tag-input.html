@@ -1,0 +1,25 @@
+<div class="tt-form-label input-control" [class.input-control--with-icon]="!!icon()">
+  <span class="tt-form-label__text input-control__label">{{ labelText() }}</span>
+
+  <div class="tag-input">
+    <div class="tag-input__wrapper">
+      @for (item of value$ | async; track item; let i = $index) {
+        <div class="tag-input__item stack-item">
+          <button class="tag-input__btn" type="button" (click)="onDelete(i)">
+            <svg icon="cross" class="tag-input__icon icon10"></svg>
+          </button>
+          <span>{{ item }}</span>
+        </div>
+      }
+
+      <input
+        class="tag-input__ghost-input"
+        type="text"
+        [(ngModel)]="innerInput"
+        [placeholder]="(value$ | async)!.length > 0 ? '' : placeholder()"
+      >
+
+      <ng-content select="[icon]"/>
+    </div>
+  </div>
+</div>
