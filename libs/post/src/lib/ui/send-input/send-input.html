@@ -1,0 +1,10 @@
+<div class="send-input" [ngClass]="isCommentInput() ? 'comment' : ''">
+  <lib-avatar-circle [avatarUrl]="profile().avatarUrl" class="size32"/>
+  <lib-auto-textarea [placeholder]="isCommentInput() ? 'Напишите комментарий' : 'Напишите что-нибудь'"/>
+  <div class="send-input__btn-emojis">
+    <svg icon="emojis" class="icon16"/>
+  </div>
+  <button class="btn btn--primary btn--icon">
+    <svg icon="send" class="icon16"/>
+  </button>
+</div>

@@ -1,17 +1,26 @@
-@if (profile(); as profile) {
+@if (profile$ | async; as profile) {
   <div class="profile-page">
     <div class="profile-page__header">
       <lib-profile-header [profile]="profile"/>
 
       <div class="profile-page__actions">
-        <a routerLink="/settings" class="btn btn--primary">
-          <span>Редактировать</span>
-          <svg icon="settings" class="icon16"/>
-        </a>
+        @if (isMyPage()) {
+          <a routerLink="/settings" class="btn btn--primary">
+            <span>Редактировать</span>
+            <svg icon="settings" class="icon16"/>
+          </a>
+        } @else {
+          <a class="btn btn--primary">
+            <span>Написать</span>
+            <svg icon="send" class="icon16"/>
+          </a>
+        }
       </div>
     </div>
     <div class="profile-page__body">
-      <div>posts will be here very soon :)</div>
+      <div>
+        <lib-post-feed [profile]="profile" [posts]="posts()"/>
+      </div>
       <div class="sidebar profile-page__sidebar">
         <div class="subscribers sidebar__subscribers mb32">
           <div class="subscribers__title mb16">

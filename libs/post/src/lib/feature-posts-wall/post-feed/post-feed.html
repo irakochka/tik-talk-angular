@@ -1,0 +1,16 @@
+<div class="post-feed">
+  @if (canPost()) {
+    <div class="post-feed__input mb16">
+      <lib-send-input [profile]="profile()"/>
+    </div>
+  }
+  <div class="post-feed__posts" #feedWrapper>
+    <div class="post-feed__posts--wrapper">
+      @if (posts(); as posts) {
+        @for (post of posts; track post.id) {
+          <lib-post-card [post]="post" [profile]="profile()"/>
+        }
+      }
+    </div>
+  </div>
+</div>

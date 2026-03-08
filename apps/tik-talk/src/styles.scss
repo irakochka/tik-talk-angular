@@ -57,6 +57,14 @@ textarea {
   margin-bottom: 4px;
 }
 
+.mb8 {
+  margin-bottom: 8px;
+}
+
+.mb12 {
+  margin-bottom: 12px;
+}
+
 .mb16 {
   margin-bottom: 16px;
 }
@@ -104,6 +112,7 @@ h5 {
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
+  word-break: break-word;
 }
 
 /* images */

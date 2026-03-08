@@ -20,7 +20,7 @@ import {FormsModule, NG_VALUE_ACCESSOR} from '@angular/forms';
 export class AutoTextarea {
   r2 = inject(Renderer2);
 
-  labelText = input.required<string>();
+  labelText = input<string>();
   placeholder = input.required<string>();
 
   value = '';

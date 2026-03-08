@@ -24,6 +24,10 @@ export class ProfileService {
     );
   }
 
+  getAccount(id: string) {
+    return this.http.get<Profile>(`${this.baseApiUrl}/account/${id}`);
+  }
+
   getSubscribersShortList(subsAmount = 3) {
     return this.http
       .get<Pageable<Profile>>(`${this.baseApiUrl}/account/subscribers/`)

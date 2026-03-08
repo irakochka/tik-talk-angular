@@ -4,6 +4,9 @@ import {ProfilePage, ProfileSearchPage, SettingsPage} from '@tt/profile';
 import {ChatPage} from '@tt/chat';
 import {CommunitySearchPage} from '@tt/community';
 import {canActivateAuth, canActivateGuest, LoginPage} from '@tt/auth';
+import {provideState} from '@ngrx/store';
+import {provideEffects} from '@ngrx/effects';
+import {PostEffects, postFeature} from '@tt/data-access';
 
 export const routes: Routes = [
   {
@@ -14,6 +17,10 @@ export const routes: Routes = [
       {
         path: 'profile/:id',
         component: ProfilePage,
+        providers: [
+          provideState(postFeature),
+          provideEffects(PostEffects)
+        ],
       },
       {
         path: 'chat',

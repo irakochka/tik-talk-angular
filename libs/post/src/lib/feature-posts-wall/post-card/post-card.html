@@ -1,0 +1,48 @@
+@if (post(); as post) {
+  <div class="post">
+    <div class="post__avatar">
+      <lib-avatar-circle [avatarUrl]="post.author.avatarUrl" class="size32"/>
+    </div>
+    <div class="post__main">
+      <header class="post__header mb12">
+        <div class="post__author">
+          {{ post.author.firstName }} {{ post.author.lastName }}
+        </div>
+
+        <time class="post__time">
+          {{ post.createdAt }}
+        </time>
+        <button class="post__menu" type="button" aria-label="Меню поста"
+        >
+          <svg icon="more" class="icon16"/>
+        </button>
+      </header>
+
+      <div class="post__content medium-text mb8">
+        {{ post.content }}
+      </div>
+
+      <footer class="post__footer mb8">
+        <button class="post__meta-btn" type="button">
+          <svg class="post__meta-icon icon16" icon="comments"/>
+          <span class="post__meta-count">{{ post.comments.length }}</span>
+        </button>
+
+        <button class="post__meta-btn" type="button">
+          <svg class="post__meta-icon icon16" icon="like"/>
+          <span class="post__meta-count">{{ post.likes }}</span>
+        </button>
+      </footer>
+
+      <section class="post__comments">
+
+      </section>
+
+      @if (me(); as me) {
+        <div class="post__reply">
+          <lib-send-input [profile]="me" [isCommentInput]="true"/>
+        </div>
+      }
+    </div>
+  </div>
+}
