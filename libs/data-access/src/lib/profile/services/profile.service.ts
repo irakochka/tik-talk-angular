@@ -18,7 +18,6 @@ export class ProfileService {
     return this.http.get<Profile>(`${this.baseApiUrl}/account/me`).pipe(
       tap((res) => {
         this.me.set(res);
-        console.log(1)
         this.#globalStoreService.me.set(res);
       })
     );
@@ -38,7 +37,6 @@ export class ProfileService {
     return this.http.patch<Profile>(`${this.baseApiUrl}/account/me`, profile)
       .pipe(
         tap((res) => {
-          console.log(res);
           this.me.set(res);
           this.#globalStoreService.me.set(res);
         })
