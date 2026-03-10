@@ -10,9 +10,9 @@ import {BASE_API_URL} from '@tt/data-access';
   providedIn: 'root'
 })
 export class AuthService {
-  http: HttpClient = inject(HttpClient);
-  router: Router = inject(Router);
-  cookieService: CookieService = inject(CookieService);
+  http = inject(HttpClient);
+  router = inject(Router);
+  cookieService = inject(CookieService);
   baseApiUrl = inject(BASE_API_URL);
 
   token: string | null = null;

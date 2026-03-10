@@ -9,7 +9,7 @@ import {BASE_API_URL} from '@tt/data-access';
   providedIn: 'root',
 })
 export class PostService {
-  http: HttpClient = inject(HttpClient);
+  http = inject(HttpClient);
   baseApiUrl = inject(BASE_API_URL);
 
   fetchPosts(params: Record<string, any>) {

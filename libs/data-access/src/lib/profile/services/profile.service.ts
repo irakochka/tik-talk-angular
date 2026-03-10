@@ -8,7 +8,7 @@ import {BASE_API_URL, GlobalStoreService, Pageable} from "../../shared";
   providedIn: 'root',
 })
 export class ProfileService {
-  http: HttpClient = inject(HttpClient);
+  http = inject(HttpClient);
   baseApiUrl = inject(BASE_API_URL);
   #globalStoreService: GlobalStoreService = inject(GlobalStoreService);
 
