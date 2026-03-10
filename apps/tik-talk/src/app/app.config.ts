@@ -12,12 +12,15 @@ import {provideHttpClient, withInterceptors} from '@angular/common/http';
 import {authTokenInterceptor} from '@tt/auth';
 import {provideToastr} from 'ngx-toastr';
 import {provideAnimations} from '@angular/platform-browser/animations';
+import {environment} from '../environments/environment';
+import { BASE_API_URL } from 'libs/data-access/src/lib/shared/tokens/app.tokens';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({eventCoalescing: true}),
     provideRouter(routes, withComponentInputBinding()),
+    { provide: BASE_API_URL, useValue: environment.apiUrl },
     provideHttpClient(withInterceptors([authTokenInterceptor])),
     provideStore(),
     provideEffects(),

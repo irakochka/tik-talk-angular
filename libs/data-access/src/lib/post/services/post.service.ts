@@ -3,13 +3,14 @@ import {HttpClient} from '@angular/common/http';
 import {
   Post,
 } from '../interfaces/post.interface';
+import {BASE_API_URL} from '@tt/data-access';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PostService {
   http: HttpClient = inject(HttpClient);
-  baseApiUrl: string = '/yt-course';
+  baseApiUrl = inject(BASE_API_URL);
 
   fetchPosts(params: Record<string, any>) {
     return this.http.get<Post[]>(`${this.baseApiUrl}/post/`, {params});

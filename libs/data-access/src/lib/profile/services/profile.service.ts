@@ -2,14 +2,14 @@ import { HttpClient } from "@angular/common/http";
 import {inject, Injectable, signal} from "@angular/core";
 import {Profile} from '../interfaces/profile.interface';
 import {map, Observable, tap} from "rxjs";
-import {GlobalStoreService, Pageable} from "../../shared";
+import {BASE_API_URL, GlobalStoreService, Pageable} from "../../shared";
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProfileService {
   http: HttpClient = inject(HttpClient);
-  baseApiUrl = '/yt-course';
+  baseApiUrl = inject(BASE_API_URL);
   #globalStoreService: GlobalStoreService = inject(GlobalStoreService);
 
   me = signal<Profile | null>(null);

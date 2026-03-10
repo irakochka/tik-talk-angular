@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {Login, TokenResponse} from '../interfaces/auth.interface';
 import {catchError, Observable, tap, throwError} from 'rxjs';
 import {CookieService} from 'ngx-cookie-service';
+import {BASE_API_URL} from '@tt/data-access';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class AuthService {
   http: HttpClient = inject(HttpClient);
   router: Router = inject(Router);
   cookieService: CookieService = inject(CookieService);
-  baseApiUrl: string = '/yt-course';
+  baseApiUrl = inject(BASE_API_URL);
 
   token: string | null = null;
   refreshToken: string | null = null;
